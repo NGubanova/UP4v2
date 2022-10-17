@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <title>Title</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </head>
+    <body>
+        <tr>
+            <a href="/zoo">Животные</a>
+            <a>Сотрудники</a>
+            <a>Виды животных</a>
+        </tr>
+        <br>
+        <tr>
+            <a href="/employee/add">Добавить</a>
+        </tr>
+        <form action="employee/filter" method="get">
+            <input type="text" placeholder="Введите имя сотрудника" name="searchName">
+            <input type="submit" value="Найти">
+        </form>
+        <div>
+            <div>
+                <div>
+                    <div th:each="el : ${listPeople}">
+                        <p th:text="'Номер: '+${el.id}"></p>
+                        <p th:text="'Имя: '+${el.name}"></p>
+                        <p th:text="'Возраст: '+${el.age}"></p>
+                        <p th:text="'Описание: '+${el.post}"></p>
+                        <p th:text="'Животные: '+${el.animal}"></p>
+                        <p th:text="'Расписание: '+${el.timetable}"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
