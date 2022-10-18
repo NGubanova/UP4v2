@@ -69,30 +69,30 @@
 
     <body>
         <div class="hm">
-            <a class="href_h1" style="color: #33B01E">Животные</a>
+            <a class="href_h1" href="/zoo">Животные</a>
             <a class="href_h1" href="/employee">Сотрудники</a>
-            <a class="href_h1" href="/terrain">Территории</a>
+            <a class="href_h1" style="color: #33B01E">Территории</a>
         </div>
         <br>
         <div class="hm">
-            <a class="btn" href="/zoo/add">Добавить</a>
+            <a class="btn" href="/terrain/add">Добавить</a>
         </div>
         <div class="hm">
-        <form action="zoo/filter" method="get">
-            <input class="search" type="text" placeholder="Введите имя животного" name="searchName">
+        <form action="terrain/filter" method="get">
+            <input class="search" type="text" placeholder="Введите название территории" name="searchName" >
             <input class="btnSearch" type="submit" value="Найти" >
         </form>
         </div>
         <div>
             <div>
                 <div>
-                    <div class="formBeauty" th:each="el : ${listAnimal}">
-                        <p th:text="'Номер: '+${el.id}"/>
-                        <p th:text="'Имя: '+${el.name}"/>
-                        <p th:text="'Возраст: '+${el.age}"/>
-                        <p th:text="'Описание: '+${el.description}"/>
-                        <p th:text="'Вес: '+${el.weight}"/>
-                        <p th:text="'Рост: '+${el.height}"/>
+                    <div class="formBeauty" th:each="el : ${listTerrain}">
+                        <p th:text="'Номер: '+${el.id}"></p>
+                        <p th:text="'Территория: '+${el.name}"></p>
+                        <p th:text="'Животное: '+${el.animal}"></p>
+                        <p th:text="'Описание: '+${el.description}"></p>
+                        <p th:text="'Ответственный: '+${el.responsible}"></p>
+                        <p th:text="'Кол-во мест: '+${el.place}"></p>
                     </div>
                 </div>
             </div>

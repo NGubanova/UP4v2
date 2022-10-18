@@ -6,26 +6,25 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Zoo {
+public class Terrain {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    private Integer age;
+    private String animal;
     private String description;
-    private Integer weight;
-    private Integer height;
+    private String responsible;
+    private Integer place;
 
-    public Zoo(String name, Integer age,
-               String description, Integer weight, Integer height){
+    public Terrain(String name, String animal, String description, String responsible, Integer place) {
         this.name = name;
-        this.age = age;
+        this.animal = animal;
         this.description = description;
-        this.weight = weight;
-        this.height = height;
+        this.responsible = responsible;
+        this.place = place;
     }
 
-    public Zoo(){}
+    public Terrain(){}
 
     public Long getId() {
         return id;
@@ -43,12 +42,12 @@ public class Zoo {
         this.name = name;
     }
 
-    public Integer getAge() {
-        return age;
+    public String getAnimal() {
+        return animal;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
+    public void setAnimal(String animal) {
+        this.animal = animal;
     }
 
     public String getDescription() {
@@ -59,19 +58,19 @@ public class Zoo {
         this.description = description;
     }
 
-    public Integer getWeight() {
-        return weight;
+    public String getResponsible() {
+        return responsible;
     }
 
-    public void setWeight(Integer weight) {
-        this.weight = weight;
+    public void setResponsible(String responsible) {
+        this.responsible = responsible;
     }
 
-    public Integer getHeight() {
-        return height;
+    public Integer getPlace() {
+        return place;
     }
 
-    public void setHeight(Integer height) {
-        this.height = height;
+    public void setPlace(Integer place) {
+        this.place = place;
     }
 }

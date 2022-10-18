@@ -22,7 +22,7 @@ public class EmployeeController {
         return "employee/index";
     }
 
-    @GetMapping("employee/action")
+    @GetMapping("employee/add")
     public String employeeAddView(Model model){
         return "employee/action";
     }
