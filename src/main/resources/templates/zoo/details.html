@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<style>
+    body {
+        background: #FBFBFB;
+        font-family: 'Segoe UI',serif;
+    }
+    .hm{
+        text-align: center;
+        vertical-align: middle;
+    }
+    .formBeauty{
+        margin: 35px auto;
+        border-radius: 20px;
+        padding: 4px 12px;
+        width: 750px;
+        background: #D3D3D3;
+        font-size: 32px;
+        font-weight: 500;
+    }
+    .formItem{
+        margin-bottom: 5px;
+        margin-top: 5px;
+        margin-left: 10px;
+        text-decoration: none;
+        color: black;
+    }
+    .btn{
+        background-color: #D3D3D3;
+        border-radius: 20px;
+        padding: 10px;
+        font-size: 28px;
+        text-decoration: none;
+        color: black;
+        font-weight: 500;
+    }
+</style>
+
+<div>
+    <div class="formBeauty" th:each="el : ${animal}">
+        <p class="formItem" th:text="'Номер: '+${el.getId()}"></p>
+        <p class="formItem" th:text="'Имя: '+${el.getName()}"></p>
+        <p class="formItem" th:text="'Возраст: '+${el.age}"></p>
+        <p class="formItem" th:text="'Описание: '+${el.description}"></p>
+        <p class="formItem" th:text="'Вес: '+${el.weight}"></p>
+        <p class="formItem" th:text="'Рост: '+${el.height}"></p>
+        <a class="formItem" th:href="'/zoo/edit/'+${el.getId()}">Изменить</a>
+        <a class="formItem" th:href="'/zoo/delete/'+${el.getId()}">Удалить</a>
+    </div>
+</div>
+<br>
+<div class="hm">
+    <a class="btn" th:href="'/zoo'">Назад</a>
+</div>
+</body>
+</html>

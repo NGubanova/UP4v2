@@ -31,6 +31,7 @@
         font-weight: 700;
         text-align: center;
         margin: 15px;
+        text-align: center;
         vertical-align: middle;
     }
     form{
@@ -56,17 +57,16 @@
 </style>
 
 <body>
-<h1>Добавление животного</h1>
+<h1>Изменения сотрудника</h1>
+<div th:each="el:${editPeople}">
 <form method="post" >
-    <input type="text" name="name" placeholder="Имя"/> <br/>
-    <input type="text" name="age" placeholder="Возраст"/> <br/>
-    <input type="text" name="description" placeholder="Описание"/> <br/>
-    <input type="text" name="weight" placeholder="Вес"/> <br/>
-    <input type="text" name="height" placeholder="Рост"/> <br/>
+    <input type="text" name="name" th:value="${el.name}" placeholder="Имя"/> <br/>
+    <input type="text" name="age" th:value="${el.age}" placeholder="Возраст"/> <br/>
+    <input type="text" name="post" th:value="${el.post}" placeholder="Должность"/> <br/>
+    <input type="text" name="animal" th:value="${el.animal}" placeholder="Животноее"/> <br/>
+    <input type="text" name="timetable" th:value="${el.timetable}" placeholder="Расписание"/> <br/>
     <input type="submit" value="Отправить данные"> <br/>
-</form> <br>
-<div class="hm">
-<a class="btn" href="/zoo">Назад</a>
-</div>
+</form>
+</div> <br>
 </body>
 </html>
