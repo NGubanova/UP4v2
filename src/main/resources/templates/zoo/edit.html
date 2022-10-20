@@ -11,19 +11,6 @@
         background: #FBFBFB;
         font-family: 'Segoe UI',serif;
     }
-    .hm{
-        text-align: center;
-        vertical-align: middle;
-    }
-    .btn{
-        background-color: #D3D3D3;
-        border-radius: 20px;
-        padding: 10px;
-        font-size: 28px;
-        text-decoration: none;
-        color: black;
-        font-weight: 500;
-    }
     h1{
         font-size: 40px;
         color: black;
@@ -58,13 +45,23 @@
 
 <body>
 <h1>Изменения животного</h1>
-<div th:each="el:${editAnimal}">
-<form method="post" >
-    <input type="text" name="name" th:value="${el.name}" placeholder="Имя"/> <br/>
-    <input type="text" name="age" th:value="${el.age}" placeholder="Возраст"/> <br/>
-    <input type="text" name="description" th:value="${el.description}" placeholder="Описание"/> <br/>
-    <input type="text" name="weight" th:value="${el.weight}" placeholder="Вес"/> <br/>
-    <input type="text" name="height" th:value="${el.height}" placeholder="Рост"/> <br/>
+<div >
+<form method="post" th:object="${zoo}">
+    <input type="text" name="name" th:field="*{name}" th:value="${name}" placeholder="Имя"/>
+    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="errorView"></div>
+
+    <input type="text" name="age" th:field="*{age}" th:value="${age}" placeholder="Возраст"/>
+    <div th:if="${#fields.hasErrors('age')}" th:errors="*{age}" class="errorView"></div>
+
+    <input type="text" name="description" th:field="*{description}" th:value="${description}" placeholder="Описание"/>
+    <div th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="errorView"></div>
+
+    <input type="text" name="weight" th:field="*{weight}" th:value="${weight}" placeholder="Вес"/> <br/>
+    <div th:if="${#fields.hasErrors('weight')}" th:errors="*{weight}" class="errorView"></div>
+
+    <input type="text" name="height" th:field="*{height}" th:value="${height}" placeholder="Рост"/> <br/>
+    <div th:if="${#fields.hasErrors('height')}" th:errors="*{height}" class="errorView"></div>
+
     <input type="submit" value="Отправить данные"> <br/>
 </form>
 </div> <br>

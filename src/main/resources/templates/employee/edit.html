@@ -11,19 +11,6 @@
         background: #FBFBFB;
         font-family: 'Segoe UI',serif;
     }
-    .hm{
-        text-align: center;
-        vertical-align: middle;
-    }
-    .btn{
-        background-color: #D3D3D3;
-        border-radius: 20px;
-        padding: 10px;
-        font-size: 28px;
-        text-decoration: none;
-        color: black;
-        font-weight: 500;
-    }
     h1{
         font-size: 40px;
         color: black;
@@ -54,19 +41,37 @@
         border-width: 0px;
         width: 710px;
     }
+    .errorView{
+        font-size: 20px;
+        font-weight: 300;
+        margin-left: 15px;
+    }
 </style>
+
 
 <body>
 <h1>Изменения сотрудника</h1>
-<div th:each="el:${editPeople}">
-<form method="post" >
-    <input type="text" name="name" th:value="${el.name}" placeholder="Имя"/> <br/>
-    <input type="text" name="age" th:value="${el.age}" placeholder="Возраст"/> <br/>
-    <input type="text" name="post" th:value="${el.post}" placeholder="Должность"/> <br/>
-    <input type="text" name="animal" th:value="${el.animal}" placeholder="Животноее"/> <br/>
-    <input type="text" name="timetable" th:value="${el.timetable}" placeholder="Расписание"/> <br/>
-    <input type="submit" value="Отправить данные"> <br/>
-</form>
+<div >
+    <form method="post" th:object="${employee}" >
+        <label>
+            <input type="text" name="name" th:value="${name}" th:field="*{name}" placeholder="Имя"/>
+            <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="errorView"></div>
+
+            <input type="text" name="age" th:field="*{age}" th:value="${age}" placeholder="Возраст"/>
+            <div th:if="${#fields.hasErrors('age')}" th:errors="*{age}" class="errorView"></div>
+
+            <input type="text" name="post" th:value="${post}" th:field="*{post}" placeholder="Должность"/>
+            <div th:if="${#fields.hasErrors('post')}" th:errors="*{post}" class="errorView"></div>
+
+            <input type="text" name="animal" th:value="${animal}" th:field="*{animal}" placeholder="Животноее"/>
+            <div th:if="${#fields.hasErrors('animal')}" th:errors="*{animal}" class="errorView"></div>
+
+            <input type="text" name="timetable" th:value="${timetable}" th:field="*{timetable}" placeholder="Расписание"/>
+            <div th:if="${#fields.hasErrors('timetable')}" th:errors="*{timetable}" class="errorView"></div>
+
+            <input type="submit" value="Отправить данные"> <br/>
+        </label>
+    </form>
 </div> <br>
 </body>
 </html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>Title</title>
@@ -54,17 +54,34 @@
     border-width: 0px;
     width: 710px;
   }
+  .errorView{
+    font-size: 20px;
+    font-weight: 300;
+    margin-left: 15px;
+  }
 </style>
 
 <body>
 <h1>Добавление сотрудника</h1>
-<form method="post" >
-  <input type="text" name="name" placeholder="Имя"/> <br/>
-  <input type="text" name="age" placeholder="Возраст"/> <br/>
-  <input type="text" name="post" placeholder="Должность"/> <br/>
-  <input type="text" name="animal" placeholder="Животное"/> <br/>
-  <input type="text" name="timetable" placeholder="График"/> <br/>
-  <input type="submit" value="Отправить данные"> <br/>
+<form th:object="${employee}" method="post" >
+  <label>
+    <input type="text" th:field="*{name}" name="name" placeholder="Имя">
+    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="errorView"></div>
+
+    <input type="text" th:field="*{age}" name="age" placeholder="Возраст">
+    <div th:if="${#fields.hasErrors('age')}" th:errors="*{age}" class="errorView"></div>
+
+    <input type="text" th:field="*{post}" name="post" placeholder="Должность">
+    <div th:if="${#fields.hasErrors('post')}" th:errors="*{post}" class="errorView"></div>
+
+    <input type="text" th:field="*{animal}" name="animal" placeholder="Животное">
+    <div th:if="${#fields.hasErrors('animal')}" th:errors="*{animal}" class="errorView"></div>
+
+    <input type="text" th:field="*{timetable}" name="timetable" placeholder="График">
+    <div th:if="${#fields.hasErrors('timetable')}" th:errors="*{timetable}" class="errorView"></div>
+
+    <input type="submit" value="Отправить данные"> <br/>
+  </label>
 </form> <br>
 <div class="hm">
   <a class="btn" href="/employee">Назад</a>

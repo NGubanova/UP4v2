@@ -5,8 +5,10 @@ import com.example.up1v2.Repository.ZooRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -22,18 +24,17 @@ public class ZooController {
     }
 
     @GetMapping("/add")
-    public String zooAddView(Model model){
+    public String zooAddView(Zoo zoo){
         return "zoo/add";
     }
 
     @PostMapping("/add")
-    public String zooAdd(@RequestParam String name,
-                         @RequestParam Integer age,
-                         @RequestParam String description,
-                         @RequestParam Integer weight,
-                         @RequestParam Integer height, Model model){
-        Zoo zoo = new Zoo(name, age, description, weight, height);
+    public String zooAdd(@Valid Zoo zoo, BindingResult result){
+        if(result.hasErrors())
+            return "zoo/add";
+
         zooRepository.save(zoo);
+
         return "redirect:/zoo";
     }
     @GetMapping("/details/{id}")
@@ -47,26 +48,16 @@ public class ZooController {
     @GetMapping("/edit/{id}")
     public String zooEdit(Model model,
                                @PathVariable long id) {
-
         Zoo zoo = zooRepository.findById(id).orElseThrow();
-        model.addAttribute("editAnimal", zoo);
+        model.addAttribute("zoo", zoo);
         return("/zoo/edit");
     }
 
     @PostMapping("/edit/{id}")
-    public String zooEdit(@PathVariable long id,
-                          @RequestParam String name,
-                          @RequestParam Integer age,
-                          @RequestParam String description,
-                          @RequestParam Integer weight,
-                          @RequestParam Integer height) {
-
-        Zoo zoo = zooRepository.findById(id).orElseThrow();
-        zoo.setName(name);
-        zoo.setAge(age);
-        zoo.setDescription(description);
-        zoo.setWeight(weight);
-        zoo.setHeight(height);
+    public String zooEdit(@Valid Zoo zoo,
+                          BindingResult result) {
+        if (result.hasErrors())
+            return("/zoo/edit");
 
         zooRepository.save(zoo);
 

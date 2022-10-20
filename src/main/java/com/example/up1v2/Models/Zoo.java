@@ -4,16 +4,30 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.*;
 
 @Entity
 public class Zoo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @NotBlank(message = "Заполните поле")
+    @Size(min = 1, max = 30, message = "Поле должно содержать от 1 до 30 символов")
     private String name;
+    @NotNull(message = "Заполните поле")
+    @Max(value = 250, message ="Возраст не может быть больше 250 лет" )
+    @Min(value = 0, message ="Младше 0 лет не может быть животное" )
     private Integer age;
+    @NotBlank(message = "Заполните поле")
+    @Size (min = 1, max = 250, message = "Поле должно содержать от 1 до 250 символов")
     private String description;
+    @NotNull(message = "Заполните поле")
+    @Max(value = 10000, message ="Вес не может быть более 10 000 кг" )
+    @Min(value = 0, message ="Вес не может быть отрицательным" )
     private Integer weight;
+    @NotNull(message = "Заполните поле")
+    @Max(value = 150, message ="Возраст не может быть больше 150 лет" )
+    @Min(value = 0, message ="Отрицательного значения не может быть" )
     private Integer height;
 
     public Zoo(String name, Integer age,

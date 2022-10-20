@@ -31,6 +31,7 @@
         font-weight: 700;
         text-align: center;
         margin: 15px;
+        text-align: center;
         vertical-align: middle;
     }
     form{
@@ -53,16 +54,31 @@
         border-width: 0px;
         width: 710px;
     }
+    .errorView{
+        font-size: 20px;
+        font-weight: 300;
+        margin-left: 15px;
+    }
 </style>
 
 <body>
 <h1>Добавление животного</h1>
-<form method="post" >
-    <input type="text" name="name" placeholder="Имя"/> <br/>
-    <input type="text" name="age" placeholder="Возраст"/> <br/>
-    <input type="text" name="description" placeholder="Описание"/> <br/>
-    <input type="text" name="weight" placeholder="Вес"/> <br/>
-    <input type="text" name="height" placeholder="Рост"/> <br/>
+<form method="post" th:object="${zoo}">
+    <input type="text" th:field="*{name}"  name="name" placeholder="Имя"/>
+    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="errorView"></div>
+
+    <input type="text" th:field="*{age}" name="age" placeholder="Возраст"/>
+    <div th:if="${#fields.hasErrors('age')}" th:errors="*{age}" class="errorView"></div>
+
+    <input type="text" th:field="*{description}" name="description" placeholder="Описание"/>
+    <div th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="errorView"></div>
+
+    <input type="text" th:field="*{weight}" name="weight" placeholder="Вес"/>
+    <div th:if="${#fields.hasErrors('weight')}" th:errors="*{weight}" class="errorView"></div>
+
+    <input type="text" th:field="*{height}" name="height" placeholder="Рост"/>
+    <div th:if="${#fields.hasErrors('height')}" th:errors="*{height}" class="errorView"></div>
+
     <input type="submit" value="Отправить данные"> <br/>
 </form> <br>
 <div class="hm">
