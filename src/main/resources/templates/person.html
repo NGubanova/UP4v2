@@ -17,11 +17,8 @@
       <option th:text="${element.name}"></option>
     </div>
   </select>
-  <br>
   <button type="submit">Добавить человека</button>
 </form>
-<br>
-
 <form th:action="${'/person/addJob/'}" method="post" >
   <select  name="nameN">
     <div th:each="element : ${person}">
@@ -33,16 +30,16 @@
       <option th:text="${element.name}"></option>
     </div>
   </select>
-  <br>
   <button type="submit">Добавить человека к месту работы</button>
 </form>
-<br>
 <div th:each="el:${person}">
   <p th:text="'Name: '+${el.name}"></p>
   <p th:text="'Password:'+${el.getPassword().getPasswordName()}"></p>
   <p th:text="'Post:'+${el.getPost().getName()}"></p>
+  <p th:text="'Salary:'+${el.getPost().getSalary()}"></p>
   <div th:each="el1:${el.getJobs()}">
     <p th:text="'Job: '+${el1.getName()}"></p>
+    <p th:text="'Address: '+${el1.getAddress()}"></p>
   </div>
   <br/>
   </div>

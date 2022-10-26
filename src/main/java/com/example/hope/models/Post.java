@@ -9,6 +9,7 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  Long id;
     private String name;
+    private Integer salary;
     @OneToMany(mappedBy = "post", fetch = FetchType.EAGER)
     private Collection<Person> users;
 
@@ -26,6 +27,14 @@ public class Post {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getSalary() {
+        return salary;
+    }
+
+    public void setSalary(Integer salary) {
+        this.salary = salary;
     }
 
     public Collection<Person> getUsers() {

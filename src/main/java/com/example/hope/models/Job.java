@@ -9,6 +9,7 @@ public class Job {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private  String name;
+    private String address;
     @ManyToMany
     @JoinTable(name = "job_user",
     joinColumns = @JoinColumn(name = "job_id"),
@@ -29,6 +30,14 @@ public class Job {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public List<Person> getPeoples() {
