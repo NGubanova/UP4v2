@@ -53,15 +53,13 @@ public class MainController {
     public String blogPostAdd(@RequestParam String name,
                               @RequestParam String passwordName,
                               @RequestParam String postName,
-                              @RequestParam String jobName, Model model)
+                              Model model)
     {
         System.out.println(name);
         Password password = passwordRepository.findByPasswordName(passwordName);
         Post post = postRepository.findByNameContaining(postName);
-        Job job = jobRepository.findByNameContaining(jobName);
         System.out.println(password.getId());
         Person person = new Person(name, password, post);
-        person.getJobs().add(job);
         personRepository.save(person);
         return "redirect:/person";
     }
