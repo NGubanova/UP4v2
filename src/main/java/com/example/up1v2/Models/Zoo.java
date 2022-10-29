@@ -9,7 +9,7 @@ import javax.validation.constraints.*;
 @Entity
 public class Zoo {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotBlank(message = "Заполните поле")
     @Size(min = 1, max = 30, message = "Поле должно содержать от 1 до 30 символов")
@@ -26,7 +26,7 @@ public class Zoo {
     @Min(value = 0, message ="Вес не может быть отрицательным" )
     private Integer weight;
     @NotNull(message = "Заполните поле")
-    @Max(value = 150, message ="Возраст не может быть больше 150 лет" )
+    @Max(value = 300, message ="Рост не может быть больше 300 м" )
     @Min(value = 0, message ="Отрицательного значения не может быть" )
     private Integer height;
 

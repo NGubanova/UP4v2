@@ -46,10 +46,10 @@
     <div class="formBeauty" th:each="el : ${people}">
         <p class="formItem" th:text="'Номер: '+${el.getId()}"></p>
         <p class="formItem" th:text="'Имя: '+${el.getName()}"></p>
-        <p class="formItem" th:text="'Возраст: '+${el.age}"></p>
-        <p class="formItem" th:text="'Описание: '+${el.post}"></p>
-        <p class="formItem" th:text="'Вес: '+${el.animal}"></p>
-        <p class="formItem" th:text="'Рост: '+${el.timetable}"></p>
+        <p class="formItem" th:text="'Логин: '+${el.username}"></p>
+        <p class="formItem" th:text="'Пароль: '+${el.password}"></p>
+        <p class="formItem" th:text="'Роль: '+${el.roles}"></p>
+        <p class="formItem" th:text="'Статус: '+${el.active}"></p>
         <a class="formItem" th:href="'/employee/edit/'+${el.getId()}">Изменить</a>
         <a class="formItem" th:href="'/employee/delete/'+${el.getId()}">Удалить</a>
     </div>

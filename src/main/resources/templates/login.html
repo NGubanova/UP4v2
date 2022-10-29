@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+  <title>Spring Security Example </title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+</head>
+<style>
+  body{
+    background: #D3D3D3;
+  }
+  .divStyle{
+
+    text-align: center;
+    vertical-align: middle;
+  }
+  .formItem{
+    margin-bottom: 5px;
+    margin-top: 5px;
+    margin-left: 10px;
+    text-decoration: none;
+    min-width: 100px;
+    width: 300px;
+    border-radius: 7px;
+    border-color: transparent;
+    padding: 7px;
+  }
+</style>
+<body>
+<div class="divStyle">
+  <div th:if="${param.error}">
+    Неправильный логин или пароль
+  </div>
+
+  <div th:if="${param.logout}">
+    Вы вышли из системы
+  </div>
+  <div class="divStyle">
+  <form th:action="@{/login}" method="post" >
+    <div><input type="text" name="username" placeholder="Логин" class="formItem"/> </label></div>
+    <div><input type="password" name="password" placeholder="Пароль" class="formItem" autocomplete="off"/> </label></div>
+    <div><input type="submit" value="Авторизироваться" class="btn btn-primary" style="margin-top: 10px"/></div>
+  </form>
+  </div>
+  <a href="/registration">Зарегистрироваться</a>
+</div>
+</body>
+</html>

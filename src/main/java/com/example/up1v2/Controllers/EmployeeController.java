@@ -1,6 +1,7 @@
 package com.example.up1v2.Controllers;
 
 import com.example.up1v2.Models.Employee;
+import com.example.up1v2.Models.Role;
 import com.example.up1v2.Repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -24,7 +26,9 @@ public class EmployeeController {
     }
 
     @GetMapping("/add")
-    public String employeeAddView(Employee employee){
+    public String employeeAddView(Employee employee, Model model){
+        Iterable<Role> roles = List.of(Role.values());
+        model.addAttribute("roleName", roles);
         return "employee/action";
     }
 
@@ -34,6 +38,7 @@ public class EmployeeController {
         if(result.hasErrors())
             return ("employee/action");
 
+        employee.setActive(true);
         employeeRepository.save(employee);
         return "redirect:/employee";
     }
@@ -50,6 +55,8 @@ public class EmployeeController {
                           @PathVariable long id) {
         Employee employee = employeeRepository.findById(id).orElseThrow();
         model.addAttribute("employee", employee);
+        Iterable<Role> roles = List.of(Role.values());
+        model.addAttribute("roleName", roles);
         return("/employee/edit");
     }
 
@@ -59,6 +66,7 @@ public class EmployeeController {
         if(result.hasErrors())
             return("/employee/edit");
 
+        employee.setActive(true);
         employeeRepository.save(employee);
 
         return("redirect:/employee/details/" + employee.getId());
@@ -66,11 +74,13 @@ public class EmployeeController {
 
     @GetMapping("/delete/{id}")
     public String employeeDelete(@PathVariable long id) {
-        employeeRepository.deleteById(id);
+        Employee employee= employeeRepository.findById(id).orElseThrow();
+        employee.setActive(false);
+        employeeRepository.save(employee);
         return("redirect:/employee");
     }
 
-    @GetMapping("/employee/filter")
+    @GetMapping("/filter")
     public String employeeFilter(@RequestParam String searchName,
                             Model model){
         List<Employee> employee =employeeRepository.findByNameContaining(searchName);

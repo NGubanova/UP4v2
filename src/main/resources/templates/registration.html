@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+  <title>Spring Security Example </title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+</head>
+
+<style>
+  body{
+      background: #D3D3D3;
+  }
+  .divStyle{
+
+      text-align: center;
+      vertical-align: middle;
+  }
+  .formItem{
+      margin-bottom: 5px;
+      margin-top: 5px;
+      margin-left: 10px;
+      text-decoration: none;
+      min-width: 100px;
+      width: 300px;
+      border-radius: 7px;
+      border-color: transparent;
+      padding: 7px;
+  }
+</style>
+<body>
+<div class="divStyle">
+  <div th:if="${error}">
+    Такой пользователь уже существует.
+  </div>
+
+  <p th:text="${error}"></p>
+
+  <form action="/registration" th:object="${employee}"  method="post">
+<label>
+    <input name="name" type="text" th:field="*{name}" placeholder="Имя" class="formItem" autocomplete="off">
+    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div><br/>
+
+    <input type="text" name="username" th:field="*{username}" placeholder="Логин" class="formItem" autocomplete="off"/>
+    <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div><br/>
+
+    <input type="password" name="password" th:field="*{password}" placeholder="Пароль" class="formItem" autocomplete="off"/>
+    <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div><br/>
+
+    <input type="submit" value="Зарегистрироваться" class="btn btn-primary"/>
+</label>
+  </form>
+  <a href="/login">Авторизироваться</a>
+</div>
+</body>
+</html>

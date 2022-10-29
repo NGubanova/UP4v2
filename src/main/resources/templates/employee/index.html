@@ -61,14 +61,12 @@
             border-width: 0px;
         }
     </style>
-
-
     <body>
         <div class="hm">
             <a class="btn" href="/employee/add">Добавить</a>
         </div>
         <div class="hm">
-            <form action="employee/filter" method="get">
+            <form action="/employee/filter" method="get">
                 <input class="search" type="text" placeholder="Введите имя сотрудника" name="searchName">
                 <input class="btnSearch" type="submit" value="Найти" >
             </form>
@@ -78,8 +76,9 @@
                 <div>
                     <div class="formBeauty" th:each="el : ${listPeople}">
                         <p class="formItem" th:text="'Номер: '+${el.id}"></p>
-                        <p class="formItem" th:text="${el.name}+' '+${el.post}"></p>
-                        <a class="formItem" th:href="'employee/details/'+${el.id}">Подробнее</a>
+                        <p class="formItem" th:text="'Имя: '+${el.name}"></p>
+                        <p class="formItem" th:text="'Статус: '+${el.active}"></p>
+                        <a class="formItem" th:href="'/employee/details/'+${el.id}">Подробнее</a>
                     </div>
                 </div>
             </div>

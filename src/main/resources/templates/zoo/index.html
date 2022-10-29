@@ -67,7 +67,7 @@
         <a class="btn" href="/zoo/add">Добавить</a>
     </div>
         <div class="hm">
-        <form action="zoo/filter" method="get">
+        <form action="/zoo/filter" method="get">
             <input class="search" type="text" placeholder="Введите имя животного" name="searchName">
             <input class="btnSearch" type="submit" value="Найти" >
         </form>
@@ -78,7 +78,7 @@
                     <div class="formBeauty" th:each="el : ${listAnimal}">
                         <p class="formItem" th:text="'Номер: '+${el.getId()}"/>
                         <p class="formItem" th:text="'Имя: '+${el.name}"/>
-                        <a class="formItem" th:href="'zoo/details/'+${el.id}">Подробнее</a>
+                        <a class="formItem" th:href="'/zoo/details/'+${el.id}">Подробнее</a>
                     </div>
                 </div>
             </div>

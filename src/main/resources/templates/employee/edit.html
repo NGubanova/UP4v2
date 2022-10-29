@@ -57,17 +57,17 @@
             <input type="text" name="name" th:value="${name}" th:field="*{name}" placeholder="Имя"/>
             <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="errorView"></div>
 
-            <input type="text" name="age" th:field="*{age}" th:value="${age}" placeholder="Возраст"/>
-            <div th:if="${#fields.hasErrors('age')}" th:errors="*{age}" class="errorView"></div>
+            <input type="text" name="username" th:field="*{username}" placeholder="Логин" class="formItem"/>
+            <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div><br/>
 
-            <input type="text" name="post" th:value="${post}" th:field="*{post}" placeholder="Должность"/>
-            <div th:if="${#fields.hasErrors('post')}" th:errors="*{post}" class="errorView"></div>
+            <input type="text" name="password" th:field="*{password}" placeholder="Пароль" class="formItem"/>
+            <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div><br/>
 
-            <input type="text" name="animal" th:value="${animal}" th:field="*{animal}" placeholder="Животноее"/>
-            <div th:if="${#fields.hasErrors('animal')}" th:errors="*{animal}" class="errorView"></div>
-
-            <input type="text" name="timetable" th:value="${timetable}" th:field="*{timetable}" placeholder="Расписание"/>
-            <div th:if="${#fields.hasErrors('timetable')}" th:errors="*{timetable}" class="errorView"></div>
+            <select name="roles">
+                <div th:each="element : ${roleName}" class="">
+                    <option th:text="${element}"></option>
+                </div>
+            </select>
 
             <input type="submit" value="Отправить данные"> <br/>
         </label>
