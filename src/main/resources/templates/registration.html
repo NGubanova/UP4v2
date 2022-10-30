@@ -1,11 +1,9 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
 <head>
   <title>Spring Security Example </title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 </head>
-
 <style>
   body{
       background: #D3D3D3;
@@ -32,9 +30,7 @@
   <div th:if="${error}">
     Такой пользователь уже существует.
   </div>
-
   <p th:text="${error}"></p>
-
   <form action="/registration" th:object="${employee}"  method="post">
 <label>
     <input name="name" type="text" th:field="*{name}" placeholder="Имя" class="formItem" autocomplete="off">

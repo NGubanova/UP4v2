@@ -4,6 +4,7 @@ import com.example.up1v2.Models.Employee;
 import com.example.up1v2.Models.Role;
 import com.example.up1v2.Repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,6 +19,8 @@ public class RegistrationController {
 
     @Autowired
     private EmployeeRepository employeeRepository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @GetMapping("/registration")
     public String reg(Employee employee) {
@@ -35,8 +38,9 @@ public class RegistrationController {
             return ("registration");
         }
 
-        employee.setActive(true); // Активируем аккаунт
-        employee.setRoles(Collections.singleton(Role.USER)); // Добавляеи роль
+        employee.setActive(true);
+        employee.setRoles(Collections.singleton(Role.USER));
+        employee.setPassword(passwordEncoder.encode(employee.getPassword()));
 
         employeeRepository.save(employee);
 

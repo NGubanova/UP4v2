@@ -66,7 +66,7 @@
             <a class="btn" href="/employee/add">Добавить</a>
         </div>
         <div class="hm">
-            <form action="/employee/filter" method="get">
+            <form action="/RORs/filter" method="get">
                 <input class="search" type="text" placeholder="Введите имя сотрудника" name="searchName">
                 <input class="btnSearch" type="submit" value="Найти" >
             </form>
@@ -76,12 +76,11 @@
                 <div>
                     <div class="formBeauty" th:each="el : ${listPeople}">
                         <p class="formItem" th:text="'Номер: '+${el.id}"></p>
-                        <p class="formItem" th:text="'Имя: '+${el.name}"></p>
-                        <p class="formItem" th:text="'Статус: '+${el.active}"></p>
+                        <p class="formItem" th:text="'Логин: '+${el.username}"></p>
                         <div class="formItem" th:each="el1:${el.getRoles()}">
                             <p th:text="'Роль: '+${el1}"></p>
                         </div>
-                        <a class="formItem" th:href="'/employee/details/'+${el.id}">Подробнее</a>
+                        <a class="formItem" th:href="'/RORs/edit/'+${el.id}">Редактировать</a>
                     </div>
                 </div>
             </div>

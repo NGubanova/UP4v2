@@ -3,6 +3,7 @@ package com.example.up1v2.Controllers;
 import com.example.up1v2.Models.Zoo;
 import com.example.up1v2.Repository.ZooRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,6 +14,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/zoo")
+@PreAuthorize("hasAnyAuthority('USER','ADMIN')")
 public class ZooController {
     @Autowired
     ZooRepository zooRepository;

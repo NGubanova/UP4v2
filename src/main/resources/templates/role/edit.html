@@ -48,26 +48,19 @@
     }
 </style>
 
-
 <body>
 <h1>Изменения сотрудника</h1>
 <div >
     <form method="post" th:each="el:${employee}" >
         <label>
-            <input type="text" name="name" th:value="${employee.name}" th:field="*{employee.name}" placeholder="Имя"/>
-            <div th:if="${#fields.hasErrors('employee.name')}" th:errors="*{employee.name}" class="errorView"></div>
+            <input type="text" readonly="readonly" name="id" th:value="${employee.id}" th:field="*{employee.id}" class="formItem"/><br/>
 
-            <input type="text" name="username" th:value="${employee.username}" th:field="*{employee.username}" placeholder="Логин" class="formItem"/>
-            <div th:if="${#fields.hasErrors('employee.username')}" th:errors="*{employee.username}"></div><br/>
+            <input type="text" readonly="readonly" name="username" th:value="${employee.username}" th:field="*{employee.username}" class="formItem"/><br/>
 
-            <input type="password" name="employee.password" th:field="*{employee.password}" placeholder="Пароль" class="formItem"/>
-            <div th:if="${#fields.hasErrors('employee.password')}" th:errors="*{employee.password}"></div><br/>
-
-            <div th:each="role : ${roleName}" class="">
+            <div th:each="role : ${roleName}">
                 <input class="form-check-input" type="checkbox" name="roles" th:value="${role}" th:checked="${#lists.contains(el.roles,role)}">
                 <label class="form-check-label" th:text="${role}"></label>
             </div>
-
             <input type="submit" value="Сохранить"> <br/>
         </label>
     </form>
