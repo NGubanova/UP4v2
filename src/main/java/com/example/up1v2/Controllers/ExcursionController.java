@@ -1,7 +1,6 @@
 package com.example.up1v2.Controllers;
 
 import com.example.up1v2.Models.Excursion;
-import com.example.up1v2.Models.Product;
 import com.example.up1v2.Models.Programm;
 import com.example.up1v2.Repository.ExcursionRepository;
 import com.example.up1v2.Repository.ProgrammRepository;
@@ -67,8 +66,6 @@ public class ExcursionController {
                                @PathVariable long id) {
         Excursion excursion=excursionRepository.findById(id).orElseThrow();
         model.addAttribute("excursion",excursion);
-//        Iterable<Post> ListPost = postRepository.findAll();
-//        model.addAttribute("listPost", ListPost);
 
         return("excursion/edit");
     }
@@ -86,13 +83,5 @@ public class ExcursionController {
     public String excursionDelete(@PathVariable long id) {
         excursionRepository.findById(id).orElseThrow();
         return("redirect:excursion");
-    }
-
-    @GetMapping("/filter")
-    public String excursionFilter(@RequestParam String searchName,
-                                 Model model){
-//        List<Excursion> excursion = excursionRepository.findByNameContaining(searchName);
-//        model.addAttribute("listExcursion",excursion);
-        return "excursion/index";
     }
 }

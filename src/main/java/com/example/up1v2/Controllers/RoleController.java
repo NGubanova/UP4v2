@@ -14,7 +14,6 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/RORs")
-//@PreAuthorize("hasAuthority('RolerOfRoles')")
 public class RoleController {
     @Autowired
     EmployeeRepository employeeRepository;

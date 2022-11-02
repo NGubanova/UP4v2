@@ -1,7 +1,6 @@
 package com.example.up1v2.Controllers;
 
 import com.example.up1v2.Models.Employee;
-import com.example.up1v2.Models.Kind;
 import com.example.up1v2.Models.Post;
 import com.example.up1v2.Models.Role;
 import com.example.up1v2.Repository.EmployeeRepository;

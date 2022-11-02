@@ -40,7 +40,6 @@ public class RegistrationController {
 
         employee.setActive(true);
         employee.setRoles(Collections.singleton(Role.USER));
-//        employee.setPost(post);
         employee.setPassword(passwordEncoder.encode(employee.getPassword()));
 
         employeeRepository.save(employee);

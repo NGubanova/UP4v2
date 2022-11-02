@@ -1,9 +1,7 @@
 package com.example.up1v2.Controllers;
 
-import com.example.up1v2.Models.Employee;
 import com.example.up1v2.Models.Food;
 import com.example.up1v2.Models.Product;
-import com.example.up1v2.Models.Role;
 import com.example.up1v2.Repository.FoodRepository;
 import com.example.up1v2.Repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 public class FoodProductController {

@@ -41,8 +41,6 @@ public class ProgrammController {
                               BindingResult result,
                               Model model,
                               @RequestParam(name = "terrain") String[] terrain){
-//        Iterable<Terrain> ListTerrain = terrainRepository.findAll();
-//        model.addAttribute("listTerrain", ListTerrain);
         if(result.hasErrors())
             return "programm/add";
         Iterable<Terrain> terrain_list = terrainRepository.findAll();
@@ -80,7 +78,6 @@ public class ProgrammController {
                           BindingResult result) {
         if (result.hasErrors())
             return("/programm/edit");
-
 
         programmRepository.save(programm);
 
