@@ -1,16 +1,82 @@
+<div th:fragment="headerEmployee">
+  <header class="p-1 text-bg-light">
+    <div class="container">
+      <div d-flex justify-content-evenly align-items-center>
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+          <li><a class="nav-link px-5 text-muted fs-1 fw-light" href="/zoo">Животные</a></li>
+          <li><a class="nav-link px-5 text-black fs-1 fw-bold" href="/employee">Сотрудники</a></li>
+          <li><a class="nav-link px-5 text-muted fs-1 fw-light" href="/excursion">Экскурсии</a></li>
+        <form th:action="@{/logout}" method="post" >
+          <input type="submit" value="Выйти" class="btn btn-outline-dark btn-sm fs-5 fw-light rounded-4 border-light p-2 m-3"/>
+        </form>
+        </ul>
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+          <li><a class="nav-link px-5 text-black fs-4 fw-light" href="/post">Должности</a></li>
+          <li><a class="nav-link px-5 text-black fs-4 fw-light" href="/RORs">Роли</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+</div>
+
+
+<div th:fragment="headerZoo">
+  <header class="p-1 text-bg-light">
+    <div class="container">
+      <div d-flex justify-content-evenly align-items-center>
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+          <li><a class="nav-link px-5 text-black fs-1 fw-bold" href="/zoo">Животные</a></li>
+          <li><a class="nav-link px-5 text-muted fs-1 fw-light" href="/employee">Сотрудники</a></li>
+          <li><a class="nav-link px-5 text-muted fs-1 fw-light" href="/excursion">Экскурсии</a></li>
+          <form th:action="@{/logout}" method="post" >
+            <input type="submit" value="Выйти" class="btn btn-outline-dark btn-sm fs-5 fw-light rounded-4 border-light p-2 m-3"/>
+          </form>
+        </ul>
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+          <li><a class="nav-link px-5 text-black fs-4 fw-light" href="/product">Продукты</a></li>
+          <li><a class="nav-link px-5 text-black fs-4 fw-light" href="/food">Рацион</a></li>
+          <li><a class="nav-link px-5 text-black fs-4 fw-light" href="/aviary">Вольер</a></li>
+          <li><a class="nav-link px-5 text-black fs-4 fw-light" href="/clas">Класс</a></li>
+          <li><a class="nav-link px-5 text-black fs-4 fw-light" href="/kind">Вид</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+</div>
+
+
+<div th:fragment="headerExcursion">
+  <header class="p-1 text-bg-light">
+    <div class="container">
+      <div d-flex justify-content-evenly align-items-center>
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+          <li><a class="nav-link px-5 text-muted fs-1 fw-light" href="/zoo">Животные</a></li>
+          <li><a class="nav-link px-5 text-muted fs-1 fw-light" href="/employee">Сотрудники</a></li>
+          <li><a class="nav-link px-5 text-black fs-1 fw-bold" href="/excursion">Экскурсии</a></li>
+          <form th:action="@{/logout}" method="post" >
+            <input type="submit" value="Выйти" class="btn btn-outline-dark btn-sm fs-5 fw-light rounded-4 border-light p-2 m-3"/>
+          </form>
+        </ul>
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+          <li><a class="nav-link px-5 text-black fs-4 fw-light" href="/type">Тип</a></li>
+          <li><a class="nav-link px-5 text-black fs-4 fw-light" href="/terrain">Территория</a></li>
+          <li><a class="nav-link px-5 text-black fs-4 fw-light" href="/programm">Программа</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+</div>
+
 <div th:fragment="headerMain">
   <header class="p-1 text-bg-light">
     <div class="container">
-      <div d-flex flex-wrap align-items-center justify-content-center >
-        <a href="/static" class="d-flex align-items-center mb-2 mb-lg-0 text-black text-decoration-none">
-          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
-        </a>
+      <div d-flex justify-content-evenly align-items-center>
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><a class="nav-link px-5 text-black fs-1 fw-bold" href="/zoo">Животные</a></li>
           <li><a class="nav-link px-5 text-black fs-1 fw-bold" href="/employee">Сотрудники</a></li>
-          <li><a class="nav-link px-5 text-black fs-1 fw-bold" href="/RORs">Роль</a></li>
+          <li><a class="nav-link px-5 text-black fs-1 fw-bold" href="/excursion">Экскурсии</a></li>
         <form th:action="@{/logout}" method="post" >
-          <input type="submit" value="Выйти" class="btn btn-outline-dark btn-sm fs-5 fw-light rounded-4 border-light p-2 m-0"/>
+          <input type="submit" value="Выйти" class="btn btn-outline-dark btn-sm fs-5 fw-light rounded-4 border-light p-2 m-3"/>
         </form>
         </ul>
       </div>

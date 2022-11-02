@@ -1,9 +1,6 @@
 package com.example.up1v2.Models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.*;
 
 @Entity
@@ -30,19 +27,34 @@ public class Zoo {
     @Min(value = 0, message ="Отрицательного значения не может быть" )
     private Integer height;
 
-    public Zoo(String name, Integer age,
-               String description, Integer weight, Integer height){
-        this.name = name;
-        this.age = age;
-        this.description = description;
-        this.weight = weight;
-        this.height = height;
-    }
+    @ManyToOne(optional = true, cascade = CascadeType.ALL)
+    private Kind kind;
+    @ManyToOne(optional = true, cascade = CascadeType.ALL)
+    private Aviary aviary;
+    @ManyToOne(optional = true, cascade = CascadeType.ALL)
+    private Food food;
+    @ManyToOne(optional = true, cascade = CascadeType.ALL)
+    private Employee user;
+    @ManyToOne(optional = true, cascade = CascadeType.ALL)
+    private Terrain terrain;
 
     public Zoo(){}
 
     public Long getId() {
         return id;
+    }
+
+    public Zoo(String name, Integer age, String description, Integer weight, Integer height, Kind kind, Aviary aviary, Food food, Employee user, Terrain terrain) {
+        this.name = name;
+        this.age = age;
+        this.description = description;
+        this.weight = weight;
+        this.height = height;
+        this.kind = kind;
+        this.aviary = aviary;
+        this.food = food;
+        this.user = user;
+        this.terrain = terrain;
     }
 
     public void setId(Long id) {
@@ -87,5 +99,45 @@ public class Zoo {
 
     public void setHeight(Integer height) {
         this.height = height;
+    }
+
+    public Kind getKind() {
+        return kind;
+    }
+
+    public void setKind(Kind kind) {
+        this.kind = kind;
+    }
+
+    public Aviary getAviary() {
+        return aviary;
+    }
+
+    public void setAviary(Aviary aviary) {
+        this.aviary = aviary;
+    }
+
+    public Food getFood() {
+        return food;
+    }
+
+    public void setFood(Food food) {
+        this.food = food;
+    }
+
+    public Employee getUser() {
+        return user;
+    }
+
+    public void setUser(Employee user) {
+        this.user = user;
+    }
+
+    public Terrain getTerrain() {
+        return terrain;
+    }
+
+    public void setTerrain(Terrain terrain) {
+        this.terrain = terrain;
     }
 }

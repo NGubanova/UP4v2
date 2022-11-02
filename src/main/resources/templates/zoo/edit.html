@@ -4,65 +4,60 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <div th:insert="fragment/header :: headerZoo"></div>
 </head>
-
-<style>
-    body {
-        background: #FBFBFB;
-        font-family: 'Segoe UI',serif;
-    }
-    h1{
-        font-size: 40px;
-        color: black;
-        text-decoration: none;
-        font-weight: 700;
-        text-align: center;
-        margin: 15px;
-        text-align: center;
-        vertical-align: middle;
-    }
-    form{
-        margin: 35px auto;
-        border-radius: 20px;
-        padding: 4px 12px;
-        width: 750px;
-        background: #D3D3D3;
-        font-size: 32px;
-        font-weight: 500;
-    }
-    input{
-        font-size: 24px;
-        font-weight: 500;
-        background-color: #FBFBFB;
-        border-radius: 15px;
-        padding: 12px;
-        color: black;
-        margin: 7px;
-        border-width: 0px;
-        width: 710px;
-    }
-</style>
 
 <body>
 <h1>Изменения животного</h1>
 <div >
 <form method="post" th:object="${zoo}">
     <input type="text" name="name" th:field="*{name}" th:value="${name}" placeholder="Имя"/>
-    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="errorView"></div>
+    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
 
     <input type="text" name="age" th:field="*{age}" th:value="${age}" placeholder="Возраст"/>
-    <div th:if="${#fields.hasErrors('age')}" th:errors="*{age}" class="errorView"></div>
+    <div th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></div>
 
     <input type="text" name="description" th:field="*{description}" th:value="${description}" placeholder="Описание"/>
-    <div th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="errorView"></div>
+    <div th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></div>
 
     <input type="text" name="weight" th:field="*{weight}" th:value="${weight}" placeholder="Вес"/> <br/>
-    <div th:if="${#fields.hasErrors('weight')}" th:errors="*{weight}" class="errorView"></div>
+    <div th:if="${#fields.hasErrors('weight')}" th:errors="*{weight}"></div>
 
     <input type="text" name="height" th:field="*{height}" th:value="${height}" placeholder="Рост"/> <br/>
-    <div th:if="${#fields.hasErrors('height')}" th:errors="*{height}" class="errorView"></div>
+    <div th:if="${#fields.hasErrors('height')}" th:errors="*{height}"></div>
 
-    <input type="submit" value="Отправить данные"> <br/>
+    <select name="listKind" class="form-select form-select-lg border-success fw-light" th:value="${kind}">
+        <div th:each="element : ${listKind}">
+            <option th:text="${element.name}"></option>
+        </div>
+    </select><br/>
+
+    <select name="listFood" class="form-select form-select-lg border-success fw-light" th:value="${food}">
+        <div th:each="element : ${listFood}">
+            <option th:text="${element.name}"></option>
+        </div>
+    </select><br/>
+
+    <select name="listAviary" class="form-select form-select-lg border-success fw-light" th:value="${aviary}">
+        <div th:each="element : ${listAviary}">
+            <option th:text="${element.type}"></option>
+        </div>
+    </select><br/>
+
+    <select name="listTerrain" class="form-select form-select-lg border-success fw-light" th:value="${terrain}">
+        <div th:each="element : ${listTerrain}">
+            <option th:text="${element.name}"></option>
+        </div>
+    </select><br/>
+
+    <select name="listEmployee" class="form-select form-select-lg border-success fw-light" th:value="${user}">
+        <div th:each="element : ${listEmployee}">
+            <option th:text="${element.name}"></option>
+        </div>
+    </select><br/>
+
+
+    <input type="submit" value="Отправить данные" class="btn btn-success"> <br/>
 </form>
 </div> <br>
 </body>

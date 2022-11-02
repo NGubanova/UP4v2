@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <div th:insert="fragment/header :: headerZoo"></div>
+</head>
+
+<body class="text-bg-light">
+<div class="mx-auto col-md-4 fw-light">
+    <h1>Именение рациона</h1>
+    <form method="post" th:each="e:${food}">
+        <input type="text" readonly="readonly" name="id" th:field="*{food.id}" th:value="${food.id}" placeholder="ID"
+           class=" fs-4 fw-light form-control border-success border-3">
+        <div th:if="${#fields.hasErrors('food.id')}" th:errors="*{food.id}"class="form-text"></div><br/>
+
+        <input type="text" name="name" th:field="*{food.name}" th:value="${food.name}" placeholder="Имя"
+           class=" fs-4 fw-light form-control border-success border-3">
+        <div th:if="${#fields.hasErrors('food.name')}" th:errors="*{food.name}"class="form-text"></div><br/>
+
+        <input type="text" name="description" th:field="*{food.description}" th:value="${food.description}" placeholder="Описание"
+           class=" fs-4 fw-light form-control border-success border-3">
+        <div th:if="${#fields.hasErrors('food.description')}" th:errors="*{food.description}"class="form-text"></div><br/>
+
+        <div th:each="product : ${productName}">
+            <input class="form-check-input btn-outline-success border-success" type="checkbox" name="products" th:value="${product.id}" th:checked="${#lists.contains(e.products,product)}">
+            <label class="form-check-label" th:text="${product.name}"></label>
+        </div><br/>
+
+        <input type="submit" value="Отправить данные" class="btn btn-success"> <br/>
+    </form>
+</div> <br>
+</body>
+</html>

@@ -4,66 +4,30 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <div th:insert="fragment/header :: headerEmployee"></div>
 </head>
 
-<style>
-    body {
-        background: #FBFBFB;
-        font-family: 'Segoe UI',serif;
-    }
-    h1{
-        font-size: 40px;
-        color: black;
-        text-decoration: none;
-        font-weight: 700;
-        text-align: center;
-        margin: 15px;
-        text-align: center;
-        vertical-align: middle;
-    }
-    form{
-        margin: 35px auto;
-        border-radius: 20px;
-        padding: 4px 12px;
-        width: 750px;
-        background: #D3D3D3;
-        font-size: 32px;
-        font-weight: 500;
-    }
-    input{
-        font-size: 24px;
-        font-weight: 500;
-        background-color: #FBFBFB;
-        border-radius: 15px;
-        padding: 12px;
-        color: black;
-        margin: 7px;
-        border-width: 0px;
-        width: 710px;
-    }
-    .errorView{
-        font-size: 20px;
-        font-weight: 300;
-        margin-left: 15px;
-    }
-</style>
 
-<body>
-<h1>Изменения сотрудника</h1>
-<div >
-    <form method="post" th:each="el:${employee}" >
-        <label>
-            <input type="text" readonly="readonly" name="id" th:value="${employee.id}" th:field="*{employee.id}" class="formItem"/><br/>
+<body class="text-bg-light">
+<div class="col-md-5 mx-auto">
+    <h1 class="text-center">Изменение сотрудника</h1>
+    <div >
+        <form method="post" th:each="el:${employee}" >
+            <label>
+                <input type="text" readonly="readonly" name="id" th:value="${employee.id}" th:field="*{employee.id}"
+                       class=" fs-4 fw-light form-control border-success border-3"><br/>
 
-            <input type="text" readonly="readonly" name="username" th:value="${employee.username}" th:field="*{employee.username}" class="formItem"/><br/>
+                <input type="text" readonly="readonly" name="username" th:value="${employee.username}" th:field="*{employee.username}"
+                       class=" fs-4 fw-light form-control border-success border-3"><br/>
 
-            <div th:each="role : ${roleName}">
-                <input class="form-check-input" type="checkbox" name="roles" th:value="${role}" th:checked="${#lists.contains(el.roles,role)}">
-                <label class="form-check-label" th:text="${role}"></label>
-            </div>
-            <input type="submit" value="Сохранить"> <br/>
-        </label>
-    </form>
-</div> <br>
+                <div th:each="role : ${roleName}">
+                    <input class="form-check-input btn-outline-success border-success" type="checkbox" name="roles" th:value="${role}" th:checked="${#lists.contains(el.roles,role)}">
+                    <label class="form-check-label" th:text="${role}"></label>
+                </div></br>
+                <input class="btn btn-success" type="submit" value="Сохранить"> <br/>
+            </label>
+        </form>
+    </div> </br>
+</div>
 </body>
 </html>

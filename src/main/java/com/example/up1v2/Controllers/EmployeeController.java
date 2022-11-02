@@ -1,8 +1,11 @@
 package com.example.up1v2.Controllers;
 
 import com.example.up1v2.Models.Employee;
+import com.example.up1v2.Models.Kind;
+import com.example.up1v2.Models.Post;
 import com.example.up1v2.Models.Role;
 import com.example.up1v2.Repository.EmployeeRepository;
+import com.example.up1v2.Repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -22,6 +25,8 @@ public class EmployeeController {
     EmployeeRepository employeeRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    PostRepository postRepository;
     @GetMapping("")
     public String employeeMain(Model model){
         Iterable<Employee> listEmployee = employeeRepository.findAll();
@@ -33,6 +38,8 @@ public class EmployeeController {
     public String employeeAddView(Employee employee, Model model){
         Iterable<Role> roles = List.of(Role.values());
         model.addAttribute("roleName", roles);
+        Iterable<Post> ListPost = postRepository.findAll();
+        model.addAttribute("listPost", ListPost);
         return "employee/action";
     }
 
@@ -43,8 +50,8 @@ public class EmployeeController {
             return ("employee/action");
 
         employee.setActive(true);
-        employeeRepository.save(employee);
         employee.setPassword(passwordEncoder.encode(employee.getPassword()));
+        employeeRepository.save(employee);
         return "redirect:/employee";
     }
     @GetMapping("/details/{id}")
@@ -62,20 +69,28 @@ public class EmployeeController {
         model.addAttribute("employee", employee);
         Iterable<Role> roles = List.of(Role.values());
         model.addAttribute("roleName", roles);
+        Iterable<Post> ListPost = postRepository.findAll();
+        model.addAttribute("listPost", ListPost);
 
         return("/employee/edit");
     }
 
     @PostMapping("/edit/{id}")
-    public String employeeEdit(@Valid Employee employee,
-                               BindingResult result) {
-        if(result.hasErrors())
-            return("/employee/edit");
+    public String employeeEdit(@RequestParam Long id,
+                               @RequestParam String[] roles,
+                               @RequestParam String username,
+                               @RequestParam String name,
+                               @RequestParam String listPost) {
+        Post post = postRepository.findByName(listPost);
+        Employee employee = employeeRepository.findById(id).orElseThrow();
 
+        employee.getRoles().clear();
+        for(String role: roles){
+            employee.getRoles().add(Role.valueOf(role));
+        }
         employee.setActive(true);
-        employee.setPassword(passwordEncoder.encode(employee.getPassword()));
+        employee = new Employee(name, username, post);
         employeeRepository.save(employee);
-
         return("redirect:/employee/details/" + employee.getId());
     }
 

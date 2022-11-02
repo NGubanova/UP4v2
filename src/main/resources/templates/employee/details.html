@@ -2,61 +2,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Детали о сотруднике</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <div th:insert="fragment/header :: headerEmployee"></div>
 </head>
-<body>
-
-<style>
-    body {
-        background: #FBFBFB;
-        font-family: 'Segoe UI',serif;
-    }
-    .hm{
-        text-align: center;
-        vertical-align: middle;
-    }
-    .formBeauty{
-        margin: 35px auto;
-        border-radius: 20px;
-        padding: 4px 12px;
-        width: 750px;
-        background: #D3D3D3;
-        font-size: 32px;
-        font-weight: 500;
-    }
-    .formItem{
-        margin-bottom: 5px;
-        margin-top: 5px;
-        margin-left: 10px;
-        text-decoration: none;
-        color: black;
-    }
-    .btn{
-        background-color: #D3D3D3;
-        border-radius: 20px;
-        padding: 10px;
-        font-size: 28px;
-        text-decoration: none;
-        color: black;
-        font-weight: 500;
-    }
-</style>
-
-<div>
-    <div class="formBeauty" th:each="el : ${people}">
-        <p class="formItem" th:text="'Номер: '+${el.getId()}"></p>
-        <p class="formItem" th:text="'Имя: '+${el.getName()}"></p>
-        <p class="formItem" th:text="'Логин: '+${el.username}"></p>
-        <p class="formItem" th:text="'Пароль: '+${el.password}"></p>
-        <p class="formItem" th:text="'Роль: '+${el.roles}"></p>
-        <p class="formItem" th:text="'Статус: '+${el.active}"></p>
-        <a class="formItem" th:href="'/employee/edit/'+${el.getId()}">Изменить</a>
-        <a class="formItem" th:href="'/employee/delete/'+${el.getId()}">Удалить</a>
+<body class="text-bg-light">
+<div class="col-md-2 mx-auto">
+    <div th:each="el : ${people}">
+        <p th:text="'Номер: '+${el.getId()}"></p>
+        <p th:text="'Имя: '+${el.getName()}"></p>
+        <p th:text="'Логин: '+${el.username}"></p>
+        <p th:text="'Должность: '+${el.getPost().getName()}"></p>
+        <p th:text="'Роль: '+${el.roles}"></p>
+        <p th:text="'Статус: '+${el.active}"></p>
+        <a th:href="'/employee/edit/'+${el.getId()}" class="link-success fw-normal">Изменить</a>
+        <a th:href="'/employee/delete/'+${el.getId()}" class="link-success fw-normal">Удалить</a>
+    </div>
+    <br>
+    <div>
+        <a th:href="'/employee'" class="link-success fw-normal">Назад</a>
     </div>
 </div>
-<br>
-<div class="hm">
-    <a class="btn" th:href="'/employee'">Назад</a>
-</div>
+
 </body>
 </html>

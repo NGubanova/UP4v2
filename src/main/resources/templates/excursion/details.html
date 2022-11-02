@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Детали об экскурсии</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <div th:insert="fragment/header :: headerExcursion"></div>
+</head>
+<body class="text-bg-light">
+<div class="col-md-2 mx-auto">
+    <div th:each="el : ${excursion}">
+        <p th:text="'Номер: '+${el.getId()}"></p>
+        <p th:text="'Имя бронирующего: '+${el.bookers}"></p>
+        <p th:text="'Телефон: '+${el.phone}"></p>
+        <p th:text="'День: '+${el.dateTime}"></p>
+        <p th:text="'Программа: '+${el.getProgramm().getName()}"></p>
+        <p th:text="'Цена: '+${el.getProgramm().getPrice}"></p>
+        <a th:href="'/employee/edit/'+${el.getId()}" class="link-success fw-normal">Изменить</a>
+        <a th:href="'/employee/delete/'+${el.getId()}" class="link-success fw-normal">Удалить</a>
+    </div>
+    <br>
+    <div>
+        <a th:href="'/employee'" class="link-success fw-normal">Назад</a>
+    </div>
+</div>
+
+</body>
+</html>

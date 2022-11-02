@@ -1,51 +1,33 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
 <head>
-  <title>Spring Security Example </title>
+  <title>Регистрация</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 </head>
-<style>
-  body{
-      background: #D3D3D3;
-  }
-  .divStyle{
-
-      text-align: center;
-      vertical-align: middle;
-  }
-  .formItem{
-      margin-bottom: 5px;
-      margin-top: 5px;
-      margin-left: 10px;
-      text-decoration: none;
-      min-width: 100px;
-      width: 300px;
-      border-radius: 7px;
-      border-color: transparent;
-      padding: 7px;
-  }
-</style>
-<body>
-<div class="divStyle">
-  <div th:if="${error}">
+<body class="text-bg-light">
+<div class="position-absolute top-50 start-50 translate-middle">
+  <div th:if="${error}" class="form-text">
     Такой пользователь уже существует.
   </div>
-  <p th:text="${error}"></p>
+  <p th:text="${error}" class="form-text"></p>
   <form action="/registration" th:object="${employee}"  method="post">
 <label>
-    <input name="name" type="text" th:field="*{name}" placeholder="Имя" class="formItem" autocomplete="off">
-    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div><br/>
+    <input name="name" type="text" th:field="*{name}" placeholder="Имя" autocomplete="off"
+    class=" fs-4 fw-light form-control border-success border-3">
+    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="form-text"></div><br/>
 
-    <input type="text" name="username" th:field="*{username}" placeholder="Логин" class="formItem" autocomplete="off"/>
-    <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div><br/>
+    <input type="text" name="username" th:field="*{username}" placeholder="Логин" autocomplete="off"
+           class=" fs-4 fw-light form-control border-success border-3">
+    <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="form-text"></div><br/>
 
-    <input type="password" name="password" th:field="*{password}" placeholder="Пароль" class="formItem" autocomplete="off"/>
-    <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div><br/>
+    <input type="password" name="password" th:field="*{password}" placeholder="Пароль" autocomplete="off"
+           class=" fs-4 fw-light form-control border-success border-3">
+    <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="form-text"></div><br/>
 
-    <input type="submit" value="Зарегистрироваться" class="btn btn-primary"/>
+    <input type="submit" value="Зарегистрироваться" class="btn btn-success"/>
 </label>
   </form>
-  <a href="/login">Авторизироваться</a>
+  <a href="/login" class="link-success">Авторизироваться</a>
 </div>
 </body>
 </html>

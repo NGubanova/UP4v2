@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <div th:insert="fragment/header :: headerExcursion"></div>
+</head>
+
+
+<body class="text-bg-light">
+<div class="col-md-5 mx-auto">
+<h1 class="text-center">Добавление программы</h1>
+<form method="post" th:object="${programm}">
+    <input type="text" th:field="*{name}"  name="name" placeholder="Название"
+           class=" fs-4 fw-light form-control border-success border-3">
+    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="form-text"></div><br/>
+
+    <input type="text" th:field="*{description}" name="description" placeholder="Описание"
+           class=" fs-4 fw-light form-control border-success border-3">
+    <div th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="form-text"></div><br/>
+
+    <input type="number" th:field="*{billet}" name="billet" placeholder="Количество мест"
+           class=" fs-4 fw-light form-control border-success border-3">
+    <div th:if="${#fields.hasErrors('billet')}" th:errors="*{billet}" class="form-text"></div><br/>
+
+    <input type="number" th:field="*{price}" name="price" placeholder="Цена"
+           class=" fs-4 fw-light form-control border-success border-3">
+    <div th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="form-text"></div><br/>
+
+    <div th:each="terrain : ${listTerrain}">
+        <input class="form-check-input btn-outline-success border-success" type="checkbox" th:value="${terrain.id}" name="terrain">
+        <label class="form-check-label" th:text="${terrain.name}"></label>
+    </div><br/>
+
+    <input type="submit" value="Отправить данные" class="btn btn-success"> <br/>
+</form> <br>
+<div>
+<a class="link-success fw-normal" href="/programm">Назад</a>
+</div>
+</div>
+</body>
+</html>

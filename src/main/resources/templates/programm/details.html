@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <div th:insert="fragment/header :: headerExcursion"></div>
+</head>
+<body>
+
+<div>
+    <div th:each="el : ${programm}">
+        <p th:text="'Номер: '+${el.getId()}"></p>
+        <p th:text="'Название: '+${el.getName()}"></p>
+        <p th:text="'Описание: '+${el.description}"></p>
+        <p th:text="'Количество мест: '+${el.billet}"></p>
+        <p th:text="'Цена: '+${el.price}"></p>
+        <div th:each="el1:${el.getTerrain()}">
+            <p th:text="'Территория: '+${el1.getName()}"></p>
+        </div>
+        <a th:href="'/programm/edit/'+${el.getId()}">Изменить</a>
+        <a th:href="'/programm/delete/'+${el.getId()}">Удалить</a>
+    </div>
+</div>
+<br>
+<div>
+    <a th:href="'/programm'">Назад</a>
+</div>
+</body>
+</html>

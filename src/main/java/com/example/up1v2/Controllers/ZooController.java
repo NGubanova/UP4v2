@@ -1,7 +1,7 @@
 package com.example.up1v2.Controllers;
 
-import com.example.up1v2.Models.Zoo;
-import com.example.up1v2.Repository.ZooRepository;
+import com.example.up1v2.Models.*;
+import com.example.up1v2.Repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -14,10 +14,21 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/zoo")
-@PreAuthorize("hasAnyAuthority('USER','ADMIN')")
+@PreAuthorize("hasAuthority('ADMIN')")
 public class ZooController {
     @Autowired
     ZooRepository zooRepository;
+    @Autowired
+    KindRepository kindRepository;
+    @Autowired
+    FoodRepository foodRepository;
+    @Autowired
+    AviaryRepository aviaryRepository;
+    @Autowired
+    TerrainRepository terrainRepository;
+    @Autowired
+    EmployeeRepository employeeRepository;
+
     @GetMapping("")
     public String zooMain(Model model){
         Iterable<Zoo> listZoo = zooRepository.findAll();
@@ -26,17 +37,65 @@ public class ZooController {
     }
 
     @GetMapping("/add")
-    public String zooAddView(Zoo zoo){
+    public String zooAddView(Zoo zoo, Model model){
+        Iterable<Kind> ListKind = kindRepository.findAll();
+        model.addAttribute("listKind", ListKind);
+
+        Iterable<Food> ListFood = foodRepository.findAll();
+        model.addAttribute("listFood", ListFood);
+
+        Iterable<Aviary> ListAviary = aviaryRepository.findAll();
+        model.addAttribute("listAviary", ListAviary);
+
+        Iterable<Terrain> ListTerrain = terrainRepository.findAll();
+        model.addAttribute("listTerrain", ListTerrain);
+
+        Iterable<Employee> ListEmployee = employeeRepository.findAll();
+        model.addAttribute("listEmployee", ListEmployee);
+
         return "zoo/add";
     }
 
     @PostMapping("/add")
-    public String zooAdd(@Valid Zoo zoo, BindingResult result){
+    public String zooAdd(@Valid Zoo zoo, BindingResult result,
+                         @RequestParam String name,
+                         @RequestParam Integer age,
+                         @RequestParam String description,
+                         @RequestParam Integer weight,
+                         @RequestParam Integer height,
+                         @RequestParam String listKind,
+                         @RequestParam String listFood,
+                         @RequestParam String listAviary,
+                         @RequestParam String listTerrain,
+                         @RequestParam String listEmployee,
+                         Model model){
+
+        Iterable<Kind> ListKind = kindRepository.findAll();
+        model.addAttribute("listKind", ListKind);
+
+        Iterable<Food> ListFood = foodRepository.findAll();
+        model.addAttribute("listFood", ListFood);
+
+        Iterable<Aviary> ListAviary = aviaryRepository.findAll();
+        model.addAttribute("listAviary", ListAviary);
+
+        Iterable<Terrain> ListTerrain = terrainRepository.findAll();
+        model.addAttribute("listTerrain", ListTerrain);
+
+        Iterable<Employee> ListEmployee = employeeRepository.findAll();
+        model.addAttribute("listEmployee", ListEmployee);
         if(result.hasErrors())
             return "zoo/add";
+        else {
+            Kind kind = kindRepository.findByName(listKind);
+            Food food = foodRepository.findByName(listFood);
+            Aviary aviary = aviaryRepository.findByType(listAviary);
+            Terrain terrain = terrainRepository.findByName(listTerrain);
+            Employee employee = employeeRepository.findByUsername(listEmployee);
+            zoo = new Zoo(name, age, description, weight, height, kind, aviary, food, employee, terrain);
 
-        zooRepository.save(zoo);
-
+            zooRepository.save(zoo);
+        }
         return "redirect:/zoo";
     }
     @GetMapping("/details/{id}")

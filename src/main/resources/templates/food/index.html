@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Title</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <div th:insert="fragment/header :: headerZoo"></div>
+</head>
+
+
+<style>
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(4, 150px);
+        grid-template-rows: repeat(4, auto);
+    }
+    .grid > * {
+        margin: 1px;
+    }
+</style>
+
+<body class="text-bg-light">
+<div class="mx-auto col-md-4 fw-light">
+    <div >
+        <a class="link-success fw-normal" href="/food/add">Добавить</a>
+    </div>
+    <div class="grid">
+        <div th:each="el : ${listFood}">
+            <p th:text="'Номер: '+${el.getId()}"/>
+            <p th:text="'Имя: '+${el.name}"/>
+            <p th:text="'Описание: '+${el.description}"/>
+            <div th:each="el1:${el.getProducts()}">
+                <p th:text="'Продукт: '+${el1.getName()}"></p>
+            </div>
+            <a class="link-success fw-normal" th:href="'/food/edit/'+${el.id}">Изменить</a>
+            <a class="link-success fw-normal" th:href="'/food/delete/'+${el.id}">Удалить</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

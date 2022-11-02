@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <title>Title</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+        <div th:insert="fragment/header :: headerExcursion"></div>
+    </head>
+
+    <style>
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 200px);
+            grid-template-rows: repeat(4, auto);
+        }
+        .grid > * {
+            margin: 1px;
+        }
+    </style>
+
+    <body class="text-bg-light">
+    <div class="col-md-4 mx-auto">
+        <div>
+            <a href="/excursion/add" class="link-success fw-normal" >Добавить</a>
+        </div>
+        <div>
+            <form action="/excursion/filter" method="get">
+                <input type="text" placeholder="Введите название экскурсии" name="searchName"
+                       class=" fs-4 fw-light form-control border-success border-3"><br/>
+                <input type="submit" value="Найти" class="btn btn-success">
+            </form>
+        </div>
+        <div class="grid">
+            <div th:each="el : ${listExcursion}">
+                <p th:text="'Номер: '+${el.id}"></p>
+                <p th:text="'Название: '+${el.getProgramm().getName()}"></p>
+                <p th:text="'Бронирующий: '+${el.bookers}"></p>
+                <p th:text="'Телефон: '+${el.phone}"></p>
+                <a th:href="'/excursion/details/'+${el.id}" class="link-success fw-normal" >Подробнее</a>
+            </div>
+        </div>
+    </div>
+    </body>
+</html>

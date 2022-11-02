@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Title</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <div th:insert="fragment/header :: headerExcursion"></div>
+</head>
+<style>
+  .grid {
+  display: grid;
+    grid-template-columns: repeat(4, 150px);
+    grid-template-rows: repeat(4, auto);
+}
+.grid > * {
+  margin: 1px;
+}
+</style>
+
+<body class="text-bg-light">
+<div class="position-absolute top-50 start-50 translate-middle fw-light">
+  <form method="post" th:object="${type}">
+    <input type="text" th:field="*{name}"  name="name" placeholder="Название"
+           class=" fs-4 fw-light form-control border-success border-3">
+    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="form-text"></div><br/>
+    <input type="submit" value="Добавить" class="btn btn-success"> <br/>
+  </form>
+<br>
+<div class="grid">
+  <div th:each="el : ${listType}">
+    <p th:text="'Номер: '+${el.id}"></p>
+    <p th:text="'Имя: '+${el.name}"></p>
+    <a class="link-success fw-normal" th:href="'/type/delete/'+${el.id}">Удалить</a>
+  </div>
+</div>
+</div>
+</body>
+</html>
